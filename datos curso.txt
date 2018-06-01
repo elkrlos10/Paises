@@ -1,0 +1,5 @@
+xamarin forms control .... controles de xaml
+https://www.youtube.com/watch?v=0YGyQaGRBWs&list=PLuEZQoW9bRnSVLpBHr6fzrPnzaunFKwfe&index=1
+
+-contepage
+-StackLayout
