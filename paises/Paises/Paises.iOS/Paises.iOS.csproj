@@ -128,4 +128,10 @@
       <Name>Paises</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\paises.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Mundi.jpg" />
+  </ItemGroup>
 </Project>
