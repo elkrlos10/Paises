@@ -2,48 +2,81 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Paises.Views.LoginPage"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="Login">
     <ContentPage.Content>
-        <StackLayout Padding="10,20,10,5">
-            <Label
-                Text="Paises"
-                HorizontalOptions="Center" 
-                FontAttributes="Bold"
-                FontSize="Large"
-                />
-            <Image Source="Mundi" WidthRequest="200"> ></Image>
-            <Label
-                Text="E-mail"/>
-            <Entry 
-                Placeholder="Ingrese e-mail"
-                Keyboard="Email">
-            </Entry>
-            <Label
-                Text="Password"/>
-            <Entry 
-                Placeholder="Ingrese password"
-                IsPassword="True">
-            </Entry>
-            <StackLayout
-                Orientation="Horizontal"
-                Margin="0,20">
+        <ScrollView>
+            <StackLayout Padding="10,20,10,5">
                 <Label
-                Text="Recordarme"
-                VerticalOptions="Center"
-                HorizontalOptions="StartAndExpand">
+                    Text="Paises"
+                    HorizontalOptions="Center" 
+                    FontAttributes="Bold"
+                    FontSize="Large"/>
+                <Image 
+                    Source="icon"
+                    WidthRequest="300">
+                </Image>
+                <Label
+                     Text="E-mail"/>
+                <Entry 
+                    Placeholder="Ingrese e-mail"
+                    Keyboard="Email">
+                </Entry>
+                <Label Text="Password"/>
+                <Entry 
+                    Placeholder="Ingrese password"
+                    IsPassword="True">
+                </Entry>
+                <ActivityIndicator>
+                </ActivityIndicator>
+                <StackLayout
+                    Orientation="Horizontal"
+                        Margin="0,0">
+                            <Label
+                                Text="Recordarme"
+                                VerticalOptions="Center"
+                                HorizontalOptions="StartAndExpand">
+                             </Label>
+                             <Switch 
+                                HorizontalOptions="End">
+                              </Switch>
+                </StackLayout>
+                <Label 
+                    HorizontalOptions="Center"
+                    Text="Olvide mi contraseña"
+                    TextColor="Blue">
                 </Label>
-                <Switch 
-                 HorizontalOptions="End">
-                </Switch>
+              
+                <StackLayout
+                    Margin="30,-20,30,0">
+                        <Button
+                            Text="Login" 
+                            BackgroundColor="Navy"
+                            TextColor="White" 
+                            BorderRadius="23"
+                            HeightRequest="46">
+                        </Button>
+                         <Button
+                            Text="Registrar" 
+                            BackgroundColor="Purple"
+                            TextColor="White" 
+                            BorderRadius="23"
+                            HeightRequest="46">
+                        </Button>
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Center">
+                        <Image
+                            Source="Facebook_logo"
+                            WidthRequest="20">
+                        </Image>
+                        <Image 
+                            Source="twitter_logo"
+                            WidthRequest="20">>
+                        </Image>
+                </StackLayout>
             </StackLayout>
-            <ActivityIndicator>
-            </ActivityIndicator>
-            <Button
-                Text="Login" 
-                BackgroundColor="Navy"
-                TextColor="White" 
-                BorderRadius="23">
-            </Button>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -134,4 +134,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\Mundi.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Facebook_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\twitter_logo.png" />
+  </ItemGroup>
 </Project>
