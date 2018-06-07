@@ -5,75 +5,87 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="Login">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="10,20,10,5">
+        <ScrollView BindingContext="{Binding Login}">
+            <StackLayout Padding="10">
                 <Label
                     Text="Paises"
                     HorizontalOptions="Center" 
                     FontAttributes="Bold"
                     FontSize="Large"/>
                 <Image 
-                    Source="icon"
-                    WidthRequest="300">
+                    Source="Mundi"
+                    WidthRequest="90">
                 </Image>
                 <Label
                      Text="E-mail"/>
                 <Entry 
                     Placeholder="Ingrese e-mail"
-                    Keyboard="Email">
+                    Keyboard="Email"
+                    Text="{Binding Email, Mode=TwoWay}">
                 </Entry>
                 <Label Text="Password"/>
                 <Entry 
                     Placeholder="Ingrese password"
-                    IsPassword="True">
+                    IsPassword="True"
+                    Text="{Binding Password, Mode=TwoWay}">
                 </Entry>
-                <ActivityIndicator>
+                <ActivityIndicator
+                    VerticalOptions="CenterAndExpand"
+                    IsRunning="{Binding IsRunning,Mode=TwoWay}">
                 </ActivityIndicator>
                 <StackLayout
                     Orientation="Horizontal"
-                        Margin="0,0">
-                            <Label
-                                Text="Recordarme"
-                                VerticalOptions="Center"
-                                HorizontalOptions="StartAndExpand">
-                             </Label>
-                             <Switch 
-                                HorizontalOptions="End">
-                              </Switch>
+                    Margin="0,0" 
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        Text="Recordarme"
+                        VerticalOptions="Center"
+                        HorizontalOptions="StartAndExpand">
+                    </Label>
+                    <Switch 
+                        HorizontalOptions="End" IsToggled="{Binding IsRemembered, Mode=TwoWay}">
+                    </Switch>
                 </StackLayout>
                 <Label 
                     HorizontalOptions="Center"
                     Text="Olvide mi contraseña"
-                    TextColor="Blue">
+                    TextColor="Blue"
+                    VerticalOptions="CenterAndExpand">
                 </Label>
-              
                 <StackLayout
-                    Margin="30,-20,30,0">
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
                         <Button
                             Text="Login" 
                             BackgroundColor="Navy"
                             TextColor="White" 
                             BorderRadius="23"
-                            HeightRequest="46">
+                            HeightRequest="46"
+                            HorizontalOptions="FillAndExpand" 
+                            Command="{Binding LoginCommand}" 
+                            IsEnabled="{Binding Isnabled, Mode=TwoWay}">
                         </Button>
                          <Button
                             Text="Registrar" 
                             BackgroundColor="Purple"
                             TextColor="White" 
                             BorderRadius="23"
-                            HeightRequest="46">
+                            HeightRequest="46"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="{Binding Isnabled, Mode=TwoWay}">>
                         </Button>
                 </StackLayout>
                 <StackLayout
                     Orientation="Horizontal"
-                    HorizontalOptions="Center">
+                    HorizontalOptions="Center" 
+                    VerticalOptions="EndAndExpand">
                         <Image
                             Source="Facebook_logo"
-                            WidthRequest="20">
+                            WidthRequest="30">
                         </Image>
                         <Image 
                             Source="twitter_logo"
-                            WidthRequest="20">>
+                            WidthRequest="30">
                         </Image>
                 </StackLayout>
             </StackLayout>
