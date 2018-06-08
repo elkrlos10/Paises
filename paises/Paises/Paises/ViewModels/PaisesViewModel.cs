@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Paises.ViewModels
 {
-    public class PaisesViewModel
+    public  class PaisesViewModel
     {
     }
 }

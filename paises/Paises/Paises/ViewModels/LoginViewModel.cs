@@ -51,6 +51,9 @@ namespace Paises.ViewModels
         {
             this.IsRemembered = true;
             this.isEnabled = true;
+
+            this.Email = "a@a.com";
+            this.Password = "123";
         }
         #endregion
 
@@ -63,7 +66,6 @@ namespace Paises.ViewModels
                 return new RelayCommand(Login);
             }
         }
-
 
 
         private async void Login()
