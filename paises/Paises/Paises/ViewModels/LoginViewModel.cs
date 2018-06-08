@@ -65,7 +65,6 @@ namespace Paises.ViewModels
         }
 
 
-
         private async void Login()
         {
             //Validar si es null o vacio la propiedad
@@ -103,6 +102,8 @@ namespace Paises.ViewModels
                 this.Password = string.Empty;
                 return;
             }
+
+            //Limpiar campos
             this.IsRunning = false;
             this.IsEnabled = true;
 
