@@ -8,9 +8,9 @@
         <StackLayout 
             BindingContext="{Binding Paises}" 
             Padding="5">
-            <Label Text="Welcome!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView 
+                ItemsSource="{Binding Paises}">
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
