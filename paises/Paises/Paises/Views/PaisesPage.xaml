@@ -5,11 +5,79 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="Paises">
     <ContentPage.Content>
-        <StackLayout 
-            BindingContext="{Binding Paises}" 
-            Padding="5">
+        <StackLayout
+            BindingContext="{Binding Paises}">
+            <SearchBar
+                BackgroundColor="Silver"
+                HeightRequest="46"
+                Text="{Binding Filter, Mode=TwoWay}"
+                Placeholder="Buscar"
+                SearchCommand="{Binding SearchCommand}">
+            </SearchBar>
+            
+            <!-- Propiedades de la listview video 13-14
+            ItemSource: Se le asignan los datos "La ObservableCollection" 
+            HasUnevenRows: Permitir que las filas tengas diferente tamaño
+            IsPullToRefreshEnabled: refrescar la lista
+            RefreshCommand: Acción a disparar cuando se refresca la lista
+            IsRefreshing: activity Indicator
+            SeparatorVisibility:Borrar la linea separadora de la listview
+            
+            -->
             <ListView 
-                ItemsSource="{Binding Paises}">
+                BackgroundColor="Silver"
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding Paises}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="true"
+                                Margin="5">
+                                <!--<Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectLandCommand}"/>
+                                </Frame.GestureRecognizers>-->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <!--<ColumnDefinition Width="Auto"/>-->
+                                    </Grid.ColumnDefinitions>
+                                    <!--<ffimageloading:CachedImage 
+                                        Grid.Column="0"
+                                        HeightRequest="30"
+                                        Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
+                                        WidthRequest="60">
+                                    </ffimageloading:CachedImage>-->
+                                    <StackLayout 
+                                        Grid.Column="0"
+                                        VerticalOptions="Center">
+                                        <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Name}"
+                                            TextColor="Black">
+                                        </Label>
+                                        <Label 
+                                            Text="{Binding Capital}"
+                                            TextColor="Black">
+                                        </Label>
+                                    </StackLayout>
+                                    <Image 
+                                        Grid.Column="1"
+                                        HorizontalOptions="End" 
+                                        Source="ic_chevron_right">
+                                    </Image>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage.Content>
