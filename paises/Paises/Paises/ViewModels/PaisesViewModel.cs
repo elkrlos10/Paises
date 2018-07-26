@@ -4,6 +4,7 @@ namespace Paises.ViewModels
     using GalaSoft.MvvmLight.Command;
     using Paises.Models;
     using Paises.Services;
+    using Paises.ViewModels.ItemsViewModels;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -21,14 +22,16 @@ namespace Paises.ViewModels
 
         //Finalidad para poder refrescar los controles en tiempo de ejecución
         #region Atributos 
-        private ObservableCollection<Land> paises;
+        //PaisItemViewModel es un espejo del modelo o clase land de la cual hereda, para no dañar
+        //la arquitectura y poder agregar el command en la itemViewModel
+        private ObservableCollection<PaisItemViewModel> paises;
         private bool isRefreshing;
         private string filter;
         private List<Land> landsList;
         #endregion
 
         #region Propiedades 
-        public ObservableCollection<Land> Paises
+        public ObservableCollection<PaisItemViewModel> Paises
         {
             get { return this.paises; }
             set { SetValue(ref this.paises, value); }
@@ -61,6 +64,28 @@ namespace Paises.ViewModels
             //Carga los paises 
             this.LoadLands();
         }
+        #endregion
+
+        #region Commands
+        // Propiedad
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(LoadLands);
+            }
+        }
+
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(Search);
+            }
+        }
+
+
+
         #endregion
 
         #region Metodos
@@ -97,31 +122,43 @@ namespace Paises.ViewModels
                 return;
             }
 
-            //casteando la respuesta a una lista de paises y asignando al atributo tipo lista
+            //casteando la respuesta del apiService a una lista de paises y asignando al atributo tipo lista
             this.landsList = (List<Land>)response.Result;
 
             //Convertir la lista a una ObservableCollection 
-            this.Paises = new ObservableCollection<Land>(this.landsList);
+            this.Paises = new ObservableCollection<PaisItemViewModel>(this.TolandItemViewModel());
             this.IsRefreshing = false;
         }
-        #endregion
 
-        #region Commands
-        // Propiedad
-        public ICommand RefreshCommand
+        //Metodo para convertir la lista landlist a una lista de PaisItemViewModel
+        private IEnumerable<PaisItemViewModel> TolandItemViewModel()
         {
-            get
+            return this.landsList.Select(l => new PaisItemViewModel
             {
-                return new RelayCommand(LoadLands);
-            }
-        }
-
-        public ICommand SearchCommand
-        {
-            get
-            {
-                return new RelayCommand(Search);
-            }
+                Alpha2Code = l.Alpha2Code,
+                Alpha3Code = l.Alpha3Code,
+                AltSpellings = l.AltSpellings,
+                Area = l.Area,
+                Borders = l.Borders,
+                Capital = l.Capital,
+                Cioc = l.Cioc,
+                Currencies = l.Currencies,
+                Demonym = l.Demonym,
+                Flag = l.Flag,
+                Gini = l.Gini,
+                Languages = l.Languages,
+                Latlng = l.Latlng,
+                Name = l.Name,
+                NativeName = l.NativeName,
+                NumericCode = l.NumericCode,
+                Population = l.Population,
+                Region = l.Region,
+                RegionalBlocs = l.RegionalBlocs,
+                Subregion = l.Subregion,
+                Timezones = l.Timezones,
+                TopLevelDomain = l.TopLevelDomain,
+                Translations = l.Translations,
+            });
         }
 
         private void Search()
@@ -129,16 +166,17 @@ namespace Paises.ViewModels
             //Si el filtro esta vacio cargar todos los paises
             if (string.IsNullOrEmpty(this.Filter))
             {
-                this.Paises = new ObservableCollection<Land>(this.landsList);
+                this.Paises = new ObservableCollection<PaisItemViewModel>(this.TolandItemViewModel());
             }
             else
             {
-                this.Paises = new ObservableCollection<Land>(
-                    this.landsList.Where(l =>l.Name.ToLower().Contains(this.Filter.ToLower())
-                    || l.Capital.ToLower().Contains(this.Filter.ToLower())));
+                this.Paises = new ObservableCollection<PaisItemViewModel>(
+                   this.TolandItemViewModel().Where(l => l.Name.ToLower().Contains(this.Filter.ToLower())
+                                          || l.Capital.ToLower().Contains(this.Filter.ToLower())));
             }
         }
-
         #endregion
+
     }
 }
+  
