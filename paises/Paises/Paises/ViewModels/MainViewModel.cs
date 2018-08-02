@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace Paises.ViewModels
 {
+    using Paises.Models;
+    using System.Collections.Generic;
+ 
     public class MainViewModel
     {
         //Propiedades tipo ViewModel de cada vista 
@@ -12,6 +13,14 @@ namespace Paises.ViewModels
         public PaisesViewModel Paises { get; set; }
         public PaisViewModel Pais { get; set; }
         #endregion
+
+        #region Propiedades
+
+        public List<Land> LandsList { get; set; }
+
+        #endregion
+
+
 
         #region Contructores
 

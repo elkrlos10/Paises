@@ -27,7 +27,7 @@ namespace Paises.ViewModels
         private ObservableCollection<PaisItemViewModel> paises;
         private bool isRefreshing;
         private string filter;
-        private List<Land> landsList;
+       
         #endregion
 
         #region Propiedades 
@@ -123,7 +123,7 @@ namespace Paises.ViewModels
             }
 
             //casteando la respuesta del apiService a una lista de paises y asignando al atributo tipo lista
-            this.landsList = (List<Land>)response.Result;
+            MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;
 
             //Convertir la lista a una ObservableCollection 
             this.Paises = new ObservableCollection<PaisItemViewModel>(this.TolandItemViewModel());
@@ -133,7 +133,7 @@ namespace Paises.ViewModels
         //Metodo para convertir la lista landlist a una lista de PaisItemViewModel
         private IEnumerable<PaisItemViewModel> TolandItemViewModel()
         {
-            return this.landsList.Select(l => new PaisItemViewModel
+            return MainViewModel.GetInstance().LandsList.Select(l => new PaisItemViewModel
             {
                 Alpha2Code = l.Alpha2Code,
                 Alpha3Code = l.Alpha3Code,
